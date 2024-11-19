@@ -2,6 +2,9 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import ImageProcessor from './components/ImageProcessor';
 import Footer from './components/Footer';
+import Features from './components/Features';
+import Instructions from './components/Instructions';
+import Reviews from './components/Reviews';
 
 function App() {
   return (
@@ -10,6 +13,9 @@ function App() {
       <div className="border-t border-gray-200 dark:border-gray-800">
         <ImageProcessor />
       </div>
+      <Features />
+      <Instructions />
+      <Reviews />
       <Footer />
     </div>
   );

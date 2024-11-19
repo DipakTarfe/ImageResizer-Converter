@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Download, Lock, Unlock, X } from 'lucide-react';
+import { Upload, Download, Lock, Unlock, X, FileWarningIcon, InfoIcon } from 'lucide-react';
 import { jsPDF } from 'jspdf';
+
 
 interface FileDetails {
   file: File;
@@ -294,7 +295,7 @@ function ImageProcessor() {
     <div className="flex-1 p-8">
       <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-          Image Processor
+          Image & PDF Resizer
         </h1>
         
         <div 
@@ -333,6 +334,15 @@ function ImageProcessor() {
                     >
                       <X className="w-4 h-4" />
                     </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeFile(index);
+                      }}
+                      className="absolute -top-2 -right--1 bg-green-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
                   </div>
                 ))}
               </div>
@@ -346,7 +356,7 @@ function ImageProcessor() {
               )}
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-6">
               <Upload className="w-12 h-12 mx-auto text-gray-400 dark:text-gray-600" />
               <p className="text-gray-600 dark:text-gray-400">
                 Drag and drop images or PDFs here, or
@@ -357,6 +367,12 @@ function ImageProcessor() {
               >
                 Choose Files
               </button>
+              <div className="flex items-center justify-center space-x-1">
+              <InfoIcon className="w-4 h-4 text-red-400 dark:text-red-600" />
+              <p className="text-gray-600 dark:text-gray-400">
+                If your file size is more than 2MB it may take some time to processing
+              </p>
+            </div>
             </div>
           )}
           <input
